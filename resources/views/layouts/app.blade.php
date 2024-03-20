@@ -26,6 +26,8 @@
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
 	</head>
 	<body>
+
+		{{-- @include('layouts.navigation') --}}
 		@include('layouts.partials.admin.navbar')
 
 		@include('layouts.partials.admin.sidebar')
@@ -36,6 +38,9 @@
 
 		@include('layouts.partials.admin.footer')
 
+		@stack('scripts')
+
+		<script src="{{ asset('vendor/jquery/jquery-3.7.1.js') }}"></script>
 		<script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ asset('vendor/chart.js/chart.umd.js') }}"></script>

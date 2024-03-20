@@ -40,12 +40,15 @@
 						<hr class="dropdown-divider">
 					</li>
 
-					<li>
-						<a class="dropdown-item d-flex align-items-center" href="#">
-							<i class="bi bi-box-arrow-right"></i>
-							<span>Sign Out</span>
-						</a>
-					</li>
+					<form method="POST" action="{{ route('logout') }}">
+						@csrf
+						<li>
+							<a class="dropdown-item d-flex align-items-center" href="#">
+								<i class="bi bi-box-arrow-right"></i>
+								<span>Sign Out</span>
+							</a>
+						</li>
+					</form>
 
 				</ul><!-- End Profile Dropdown Items -->
 			</li><!-- End Profile Nav -->
@@ -54,3 +57,7 @@
 	</nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->
+
+@push('scripts')
+ <script type="text/javascript" src="{{ asset('js/page/navbar/index.js') }}"></script>
+@endpush
