@@ -26,10 +26,15 @@
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
 	</head>
 	<body>
+		@include('layouts.partials.admin.navbar')
+
+		@include('layouts.partials.admin.sidebar')
 
 		<main id="main" class="main">
 			{{ $slot }}
 		</main>
+
+		@include('layouts.partials.admin.footer')
 
 		<script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
