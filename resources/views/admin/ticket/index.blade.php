@@ -3,6 +3,6 @@
 		<h1>Tickets</h1>
 	</div><!-- End Page Title -->
 
-	<button type="button" class="btn btn-primary"><i class="bi bi-ticket me-1"></i>Add Ticket</button>
+	<a href="{{ route('tickets.create') }}" class="btn btn-primary"><i class="bi bi-ticket me-1"></i>Add Ticket</a>
 
 </x-app-layout>
