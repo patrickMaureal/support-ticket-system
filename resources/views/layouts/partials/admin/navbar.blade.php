@@ -40,10 +40,10 @@
 						<hr class="dropdown-divider">
 					</li>
 
-					<form method="POST" action="{{ route('logout') }}">
+					<form class="logout-form" action="{{ route('logout') }}" method="POST" >
 						@csrf
 						<li>
-							<a class="dropdown-item d-flex align-items-center" href="#">
+							<a class="logout dropdown-item d-flex align-items-center" href="">
 								<i class="bi bi-box-arrow-right"></i>
 								<span>Sign Out</span>
 							</a>

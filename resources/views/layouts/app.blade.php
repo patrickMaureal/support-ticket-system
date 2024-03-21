@@ -38,9 +38,8 @@
 
 		@include('layouts.partials.admin.footer')
 
-		@stack('scripts')
 
-		<script src="{{ asset('vendor/jquery/jquery-3.7.1.js') }}"></script>
+		<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ asset('vendor/chart.js/chart.umd.js') }}"></script>
@@ -52,5 +51,8 @@
 
 		<!-- Template Main JS File -->
 		<script src="{{ asset('js/theme/admin/main.js') }}"></script>
+
+		{{-- page specific js files --}}
+		@stack('scripts')
 	</body>
 </html>
