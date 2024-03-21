@@ -271,23 +271,6 @@ h6 {
   box-shadow: none;
 }
 
-.btn-save {
-	padding: 10px;
-	text-align: center;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	background-color: #012970 !important;
-	border: 1px solid #012970 !important;
-	color: #fff;
-	border-radius: 10px;
-}
-
-.btn-save:hover {
-	background-color: #ffffff !important;
-	color: #012970;
-	transition: all ease-in-out 0.3s;
-}
-
 /* Accordion */
 .accordion-item {
   border: 1px solid #ebeef4;
