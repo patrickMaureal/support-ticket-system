@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
+use App\Models\Ticket\Ticket;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -26,9 +28,18 @@ class TicketController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(StoreTicketRequest $request	)
 	{
-		//
+		$data = $request->validated();
+
+		$tickets = new Ticket();
+		$tickets->title = $data['title'];
+		$tickets->description = $data['description'];
+		$tickets->priority = $data['priority'];
+		$tickets->save();
+
+
+		return redirect()->route('tickets.index');
 	}
 
 	/**
