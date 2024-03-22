@@ -27,4 +27,12 @@ $(function(){
 			{ data: "status", name: "status" },
 		],
 	});
+
+	$("#custom-search-field").keyup(function () {
+		table.search($(this).val()).draw();
+	});
+	// custom page length
+	$("#custom-page-length").change(function () {
+		table.page.len($(this).val()).draw();
+	}).trigger('change');
 })
