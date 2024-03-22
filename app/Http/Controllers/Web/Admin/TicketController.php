@@ -8,6 +8,7 @@ use App\Models\Ticket\Ticket;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 
 class TicketController extends Controller
@@ -18,6 +19,14 @@ class TicketController extends Controller
 	public function index()
 	{
 		return view('admin.ticket.index');
+	}
+
+	public function showTable(){
+		if (request()->ajax()) {
+			$tickets = Ticket::select('id','title','priority','status')->get();
+
+			return DataTables::of($tickets)->toJson();
+		}
 	}
 
 	/**
