@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
 use App\Models\Ticket\Ticket;
+use RealRashid\SweetAlert\Facades\Alert;
+
 use Illuminate\Http\Request;
+
 
 class TicketController extends Controller
 {
@@ -38,6 +41,7 @@ class TicketController extends Controller
 		$tickets->priority = $data['priority'];
 		$tickets->save();
 
+		toast('Ticket created successfully', 'success');
 
 		return redirect()->route('tickets.index');
 	}

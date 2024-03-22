@@ -47,8 +47,15 @@
 		<script src="{{ asset('vendor/tinymce/tinymce.min.js') }}"></script>
 		<script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
 
+		<!-- Vendor JS Files -->
+		<script type="text/javascript" src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+		@include('sweetalert::alert')
+
+
 		<!-- Template Main JS File -->
 		<script src="{{ asset('js/theme/admin/main.js') }}"></script>
+		<script src="{{ asset('js/theme/admin/custom.js') }}"></script>
+
 
 		{{-- page specific js files --}}
 		@stack('scripts')
