@@ -33,9 +33,9 @@
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
 									<select class="form-select" id="priority" aria-label="priority" name="priority">
-										<option selected value="low">Low</option>
-										<option value="mid">Mid</option>
-										<option value="high">High</option>
+										<option selected value="Low">Low</option>
+										<option value="Mid">Mid</option>
+										<option value="High">High</option>
 									</select>
 									<label for="floatingSelect">Priority</label>
 								</div>
