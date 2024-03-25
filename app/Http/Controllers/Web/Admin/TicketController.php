@@ -25,7 +25,10 @@ class TicketController extends Controller
 		if (request()->ajax()) {
 			$tickets = Ticket::select('id','title','priority','status')->get();
 
-			return DataTables::of($tickets)->toJson();
+			return DataTables::of($tickets)
+			->addColumn('action', 'admin.ticket.table-buttons')
+			->rawColumns(['action'])
+			->toJson();
 		}
 	}
 

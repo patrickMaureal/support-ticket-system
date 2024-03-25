@@ -25,6 +25,12 @@ $(function(){
 			{ data: "title", name: "title" },
 			{ data: "priority", name: "priority" },
 			{ data: "status", name: "status" },
+			{
+				data: "action",
+				name: "action",
+				orderable: false,
+				searchable: false,
+			},
 		],
 	});
 
