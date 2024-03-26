@@ -18,7 +18,7 @@
 						<h5 class="card-title">Update Ticket</h5>
 
 						<!-- Multi Columns Form -->
-						<form class="row g-3" method="POST" action="{{ route('tickets.update') }}" >
+						<form class="row g-3" method="POST" action="{{ route('tickets.update', $ticket->id) }}" >
 							@csrf
 							@method('PUT')
 
@@ -28,15 +28,15 @@
 							</div>
 							<div class="col-md-12">
 								<label for="description" class="form-label">Description</label>
-								<textarea class="form-control" placeholder="Description" id="description" style="height: 100px;" name="description" id="description" value="{{ $ticket->description }}"></textarea>
+								<textarea class="form-control" placeholder="Description" id="description" style="height: 100px;" name="description" id="description">{{ $ticket->description }}</textarea>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
 									<select class="form-select" id="priority" aria-label="priority" name="priority">
-										<option value="Low">Low</option>
-										<option value="Mid">Mid</option>
-										<option value="High">High</option>
+										@foreach(['Low', 'Mid', 'High'] as $currentPriority)
+											<option value="{{ $currentPriority }}" {{ $ticket->priority == $currentPriority ? 'selected' : '' }}>{{ $currentPriority }}</option>
+										@endforeach
 									</select>
 									<label for="floatingSelect">Priority</label>
 								</div>

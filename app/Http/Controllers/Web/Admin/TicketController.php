@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
-use App\Models\Ticket\Ticket;
-use RealRashid\SweetAlert\Facades\Alert;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
+
+use App\Models\Ticket\Ticket;
+
 
 
 class TicketController extends Controller
@@ -16,7 +18,7 @@ class TicketController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(): View
 	{
 		return view('admin.ticket.index');
 	}
@@ -35,7 +37,7 @@ class TicketController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create()
+	public function create(): View
 	{
 		return view('admin.ticket.create');
 	}
@@ -43,7 +45,7 @@ class TicketController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(StoreTicketRequest $request	)
+	public function store(StoreTicketRequest $request	): RedirectResponse
 	{
 		$data = $request->validated();
 
@@ -69,7 +71,7 @@ class TicketController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function edit(Ticket $ticket)
+	public function edit(Ticket $ticket): View
 	{
 		return view('admin.ticket.edit',compact('ticket'));
 	}
@@ -77,9 +79,17 @@ class TicketController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(UpdateTicketRequest $request, Ticket $ticket):RedirectResponse
 	{
-		//
+		$data = $request->validated();
+
+		$ticket->title = $data['title'];
+		$ticket->description = $data['description'];
+		$ticket->priority = $data['priority'];
+		$ticket->save();
+
+		toast('Ticket updated successfully', 'success');
+		return redirect()->route('tickets.index');
 	}
 
 	/**
