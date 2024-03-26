@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
 use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
+use App\Models\Category\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
@@ -42,9 +43,10 @@ class TicketController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(): View
+	public function create(Category $category): View
 	{
-		return view('admin.ticket.create');
+		$categories = Category::all();
+		return view('admin.ticket.create',compact('categories'));
 	}
 
 	/**
@@ -57,6 +59,7 @@ class TicketController extends Controller
 		$tickets = new Ticket();
 		$tickets->title = $data['title'];
 		$tickets->description = $data['description'];
+		$tickets->category = $data['category'];
 		$tickets->priority = $data['priority'];
 		$tickets->save();
 

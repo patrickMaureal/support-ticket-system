@@ -35,7 +35,19 @@
 									<x-input-error message="{{ $message }}" />
 								@enderror
 							</div>
-
+							<fieldset class="row mb-3 mt-3">
+								<legend class="col-form-label col-sm-2 pt-0">Category</legend>
+								<div class="col-sm-10">
+									@foreach ( $categories as $category )
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="category" id="{{ $category->name }}" value="{{ $category->id }}">
+											<label class="form-check-label" for="{{ $category->name }}">
+												{{ $category->name }}
+											</label>
+										</div>
+									@endforeach
+								</div>
+							</fieldset>
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
 									<select class="form-select" id="priority" aria-label="priority" name="priority" required>
