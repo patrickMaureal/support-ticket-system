@@ -2,6 +2,7 @@
 
 namespace App\Models\Ticket;
 
+use App\Models\Category\Category;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,4 +18,8 @@ class Ticket extends Model
 		'priority',
 		'status',
 	];
+
+	public function categories() {
+		return $this->belongsToMany(Category::class);
+	}
 }

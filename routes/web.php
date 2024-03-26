@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\Admin\Dashboard;
 use App\Http\Controllers\Web\Admin\TicketController;
@@ -23,6 +24,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('table', [TicketController::class, 'showTable'])->name('table');
 	});
 	Route::resource('tickets', TicketController::class);
+
+	Route::prefix('categories')->name('categories.')->group(function () {
+		Route::get('table', [CategoryController::class, 'showTable'])->name('table');
+	});
+	Route::resource('categories', CategoryController::class);
+
 });
 
 require __DIR__ . '/auth.php';
