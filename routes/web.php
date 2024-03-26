@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\Admin\CategoryController;
 use App\Http\Controllers\Web\Admin\Dashboard;
+use App\Http\Controllers\Web\Admin\LabelController;
 use App\Http\Controllers\Web\Admin\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	});
 	Route::resource('categories', CategoryController::class);
 
+	Route::prefix('labels')->name('labels.')->group(function () {
+		Route::get('table', [LabelController::class, 'showTable'])->name('table');
+	});
+	Route::resource('labels', LabelController::class);
 });
 
 require __DIR__ . '/auth.php';

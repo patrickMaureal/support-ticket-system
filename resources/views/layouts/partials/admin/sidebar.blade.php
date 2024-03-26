@@ -24,6 +24,13 @@
 			</a>
 		</li><!-- End Category Nav -->
 
+		<li class="nav-item">
+			<a class="nav-link {{ request()->routeIs('labels.*') ? '' : 'collapsed' }}" href="{{ route('labels.index') }}">
+				<i class="bi bi-tag"></i>
+				<span>Labels</span>
+			</a>
+		</li><!-- End Label Nav -->
+
 	</ul>
 
 </aside><!-- End Sidebar-->
