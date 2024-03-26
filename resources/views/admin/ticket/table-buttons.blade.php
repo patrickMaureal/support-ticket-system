@@ -1,4 +1,4 @@
 <div>
-	<a class="btn btn-outline-success" href="{{ route('tickets.edit', $id) }}">Edit</a>
-	<button class="delete-ticket btn btn-outline-danger" data-id="{{ $id }}">Remove</button>
+	<a class="btn btn-success btn-sm" href="{{ route('tickets.edit', $id) }}"><i class="bi bi-pen"></i></a>
+	<button class="delete-ticket btn btn-danger btn-sm" data-id="{{ $id }}"><i class="bi bi-trash"></i></button>
 </div>

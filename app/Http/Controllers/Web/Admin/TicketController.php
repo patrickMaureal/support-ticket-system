@@ -29,8 +29,12 @@ class TicketController extends Controller
 			$tickets = Ticket::select('id','title','priority','status')->get();
 
 			return DataTables::of($tickets)
+			->editColumn('status', function ($tickets) {
+				$bgColor = ($tickets->status == 'Open') ? 'bg-success' : 'bg-secondary';
+				return '<span class="badge rounded-pill '.$bgColor.'">'.$tickets->status.'</span>';
+			})
 			->addColumn('action', 'admin.ticket.table-buttons')
-			->rawColumns(['action'])
+			->rawColumns(['action','status'])
 			->toJson();
 		}
 	}
