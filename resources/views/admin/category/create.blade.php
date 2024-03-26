@@ -22,9 +22,9 @@
 							@csrf
 
 							<div class="col-md-12">
-								<label for="title" class="form-label">Title<x-asterisk/></label>
-								<input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>
-								@error('title')
+								<label for="name" class="form-label">Name<x-asterisk/></label>
+								<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+								@error('name')
                 	<x-input-error message="{{ $message }}" />
                 @enderror
 							</div>
