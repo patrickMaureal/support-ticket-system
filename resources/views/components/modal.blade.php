@@ -10,13 +10,13 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
 						</span>
-					</div>	
+					</div>
 					<div class="modal-body">
 						<p>Are you sure you want to delete this {{ $label }}?</p>
 					</div>
 					<div class="modal-footer">
-						<button id="close-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
-						<button id="{{ $buttonId }}" class="btn btn-primary" >Yes</button>
+						<button id="close-button" type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" >No</button>
+						<button id="{{ $buttonId }}" class="btn btn-outline-danger" >Yes</button>
 					</div>
 				@endif
 			</div>
