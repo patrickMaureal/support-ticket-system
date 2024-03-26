@@ -25,6 +25,7 @@ class UpdateTicketRequest extends FormRequest
 			'title' => ['required', 'string', 'max:255'],
 			'description' => ['required', 'string'],
 			'priority' => ['required', 'string'],
+			'status' => ['required', 'string'],
 		];
 	}
 }

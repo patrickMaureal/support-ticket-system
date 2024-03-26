@@ -91,6 +91,7 @@ class TicketController extends Controller
 		$ticket->title = $data['title'];
 		$ticket->description = $data['description'];
 		$ticket->priority = $data['priority'];
+		$ticket->status = $data['status'];
 		$ticket->save();
 
 		toast('Ticket updated successfully', 'success');

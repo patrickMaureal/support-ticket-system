@@ -41,6 +41,16 @@
 									<label for="floatingSelect">Priority</label>
 								</div>
 							</div>
+							<div class="col-md-12">
+								<div class="form-floating mb-3">
+									<select class="form-select" id="status" aria-label="status" name="status">
+										@foreach(['Open', 'Close'] as $currentStatus)
+											<option value="{{ $currentStatus }}" {{ $ticket->status == $currentStatus ? 'selected' : '' }}>{{ $currentStatus }}</option>
+										@endforeach
+									</select>
+									<label for="floatingSelect">Status</label>
+								</div>
+							</div>
 							<div class="text-start">
 								<a href="{{ route('tickets.index') }}" class="btn btn-secondary">Back</a>
 								<button type="submit" class="btn btn-primary">Submit</button>
