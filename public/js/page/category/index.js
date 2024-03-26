@@ -53,7 +53,7 @@ $(function () {
 	//start => modal button delete
 	$('body').on('click', '#destroy-category', function () {
 		$.ajax({
-			url: "/categorys/" + this_id,
+			url: "/categories/" + this_id,
 			type: "DELETE",
 			dataType: "json",
 			beforeSend: function () {

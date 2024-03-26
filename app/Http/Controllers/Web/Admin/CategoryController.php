@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
@@ -85,8 +86,16 @@ class CategoryController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(Category $category)
+	public function destroy(Request $request, Category $category)
 	{
-		//
+		if ($request->ajax()) {
+			
+			$category->delete();
+
+			return response()->json([
+				'success' => true,
+				'message' => 'Category deleted successfully',
+			],Response::HTTP_OK);
+		}
 	}
 }
