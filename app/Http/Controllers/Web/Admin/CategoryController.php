@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Models\Category\Category;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
 {
@@ -17,6 +18,16 @@ class CategoryController extends Controller
 		return view('admin.category.index');
 	}
 
+	public function showTable(){
+		if (request()->ajax()) {
+			$categories = Category::select('id','name')->get();
+
+			return DataTables::of($categories)
+			->addColumn('action', 'admin.category.table-buttons')
+			->rawColumns(['action'])
+			->toJson();
+		}
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 */
