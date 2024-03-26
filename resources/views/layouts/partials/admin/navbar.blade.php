@@ -4,7 +4,7 @@
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="index.html" class="logo d-flex align-items-center">
 			<img src="{{ asset('img/logo.png') }}" alt="">
-			<span class="d-none d-lg-block">NiceAdmin</span>
+			<span class="d-none d-lg-block">STS</span>
 		</a>
 		<i class="bi bi-list toggle-sidebar-btn"></i>
 	</div><!-- End Logo -->
@@ -22,7 +22,6 @@
 				<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 					<li class="dropdown-header">
 						<h6>{{ auth()->user()->name }}</h6>
-						<span>Web Designer</span>
 					</li>
 
 					<li>

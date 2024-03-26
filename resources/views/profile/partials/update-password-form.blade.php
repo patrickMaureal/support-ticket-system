@@ -1,6 +1,6 @@
 <div class="tab-pane fade pt-3" id="profile-change-password">
 	<!-- Change Password Form -->
-	<form method="post" action="{{ route('password.update') }}">
+	<form method="post" action="{{ route('password.update') }}" autocomplete="on">
 		@csrf
 		@method('put')
 
