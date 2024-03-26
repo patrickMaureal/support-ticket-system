@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\Admin\CategoryController;
 use App\Http\Controllers\Web\Admin\Dashboard;
 use App\Http\Controllers\Web\Admin\TicketController;
 use Illuminate\Support\Facades\Route;
