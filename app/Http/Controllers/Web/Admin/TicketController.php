@@ -98,13 +98,13 @@ class TicketController extends Controller
 	 */
 	public function destroy(Request $request, Ticket $ticket)
 	{
-		if($request->ajax) {
+		if($request->ajax()) {
 
 			$ticket->delete();
 
 			return response()->json([
 				'status' => 'success',
-				'message' => 'Ticket deleted successfully',
+				'message' => 'Ticket has been successfully deleted.',
 			],Response::HTTP_OK);
 		}
 	}

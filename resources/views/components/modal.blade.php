@@ -5,14 +5,18 @@
 				@if ($type == 'delete')
 					<div class="modal-header">
 						<h5 class="modal-title">Delete Confirmation</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
+						<span class="pull-right">
+							<div class="spinner-grow text-danger spinner" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+						</span>
+					</div>	
 					<div class="modal-body">
 						<p>Are you sure you want to delete this {{ $label }}?</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-						<button type="button" class="btn btn-primary" id="{{ $buttonId }}">Yes</button>
+						<button id="close-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
+						<button id="{{ $buttonId }}" class="btn btn-primary" >Yes</button>
 					</div>
 				@endif
 			</div>

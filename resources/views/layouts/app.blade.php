@@ -41,10 +41,8 @@
 
 		@include('layouts.partials.admin.footer')
 
-
-		<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('vendor/popperjs/popper.js') }}"></script>
-		<script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
+		<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap-datatables/dataTables.min.js') }}"></script>
 		<script src="{{ asset('vendor/bootstrap-datatables/dataTables.bootstrap5.min.js') }}"></script>
