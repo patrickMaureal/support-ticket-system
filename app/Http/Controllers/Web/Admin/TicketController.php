@@ -8,9 +8,10 @@ use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Models\Ticket\Ticket;
-
 
 
 class TicketController extends Controller
@@ -95,8 +96,16 @@ class TicketController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(Request $request, Ticket $ticket)
 	{
-		//
+		if($request->ajax) {
+
+			$ticket->delete();
+
+			return response()->json([
+				'status' => 'success',
+				'message' => 'Ticket deleted successfully',
+			],Response::HTTP_OK);
+		}
 	}
 }

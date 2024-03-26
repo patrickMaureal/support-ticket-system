@@ -50,6 +50,8 @@
 		</div>
 	</div>
 
+	<x-modal modal-id="ticket-modal" button-id="destroy-ticket" type="delete" label="ticket"/>
+
 	@push('scripts')
 		<script type="text/javascript" src="{{ asset('js/page/ticket/index.js') }}"></script>
 	@endpush

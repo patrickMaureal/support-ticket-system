@@ -1,5 +1,9 @@
 $(function(){
 
+	let this_id;
+
+	let modal = $("#ticket-modal");
+
 	let table = $("#ticket-table").DataTable({
 		autoWidth: false,
 		responsive: true,
@@ -41,4 +45,39 @@ $(function(){
 	$("#custom-page-length").change(function () {
 		table.page.len($(this).val()).draw();
 	}).trigger('change');
+
+	$('body').on('click','.delete-ticket', function () {
+		this_id = $(this).attr('data-id');
+		modal.modal('show');
+	});
+
+	$('body').on('click','#destroy-ticket', function () {
+
+		$.ajax({
+			url: "/tickets/" + this_id,
+			method: "DELETE",
+			dataType: "json",
+			beforeSend: function () {
+				buttons('destroy-ticket', 'start');
+			}
+		})
+		.done(function (response) {
+			table.ajax.reload();
+			toast.fire({
+				icon: 'success',
+				title: response.message,
+			});
+		})
+		.fail(function (jqXHR, textStatus, errorThrown) {
+			toast.fire({
+				icon: 'error',
+				title: jqXHR.responseJSON.message,
+			});
+		})
+		.always(function (jqXHROrData, textStatus, jqXHROrErrorThrown) {
+			buttons('destroy-ticket', 'finish');
+			modal.modal('hide');
+		});
+	})
+
 })
