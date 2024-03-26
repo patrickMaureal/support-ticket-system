@@ -22,17 +22,23 @@
 							@csrf
 
 							<div class="col-md-12">
-								<label for="title" class="form-label">Title</label>
-								<input type="text" class="form-control" id="title" name="title">
+								<label for="title" class="form-label">Title<x-asterisk/></label>
+								<input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>
+								@error('title')
+                	<x-input-error message="{{ $message }}" />
+                @enderror
 							</div>
 							<div class="col-md-12">
-								<label for="description" class="form-label">Description</label>
-								<textarea class="form-control" placeholder="Description" id="description" style="height: 100px;" name="description" id="description"></textarea>
+								<label for="description" class="form-label">Description<x-asterisk/></label>
+								<textarea class="form-control @error('title') is-invalid @enderror" placeholder="Description" id="description" style="height: 100px;" name="description" id="description" required></textarea>
+								@error('description')
+									<x-input-error message="{{ $message }}" />
+								@enderror
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
-									<select class="form-select" id="priority" aria-label="priority" name="priority">
+									<select class="form-select" id="priority" aria-label="priority" name="priority" required>
 										<option selected value="Low">Low</option>
 										<option value="Mid">Mid</option>
 										<option value="High">High</option>
