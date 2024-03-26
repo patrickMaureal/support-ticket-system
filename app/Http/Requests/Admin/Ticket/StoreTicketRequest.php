@@ -25,6 +25,7 @@ class StoreTicketRequest extends FormRequest
 			'title' => ['required', 'string', 'max:255'],
 			'description' => ['required', 'string'],
 			'category' => ['required', 'string'],
+			'label' => ['required', 'string'],
 			'priority' => ['required', 'string'],
 		];
 	}

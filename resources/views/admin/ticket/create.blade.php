@@ -48,6 +48,19 @@
 									@endforeach
 								</div>
 							</fieldset>
+							<fieldset class="row mb-3 mt-3">
+								<legend class="col-form-label col-sm-2 pt-0">Label</legend>
+								<div class="col-sm-10">
+									@foreach ( $labels as $label )
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="label" id="{{ $label->name }}" value="{{ $label->id }}">
+											<label class="form-check-label" for="{{ $label->name }}">
+												{{ $label->name }}
+											</label>
+										</div>
+									@endforeach
+								</div>
+							</fieldset>
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
 									<select class="form-select" id="priority" aria-label="priority" name="priority" required>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
 use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
 use App\Models\Category\Category;
+use App\Models\Label\Label;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
@@ -46,7 +47,8 @@ class TicketController extends Controller
 	public function create(Category $category): View
 	{
 		$categories = Category::all();
-		return view('admin.ticket.create',compact('categories'));
+		$labels = Label::all();
+		return view('admin.ticket.create',compact('categories','labels'));
 	}
 
 	/**
@@ -60,6 +62,7 @@ class TicketController extends Controller
 		$tickets->title = $data['title'];
 		$tickets->description = $data['description'];
 		$tickets->category = $data['category'];
+		$tickets->label = $data['label'];
 		$tickets->priority = $data['priority'];
 		$tickets->save();
 

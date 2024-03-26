@@ -16,6 +16,7 @@ return new class extends Migration
 			$table->string('title');
 			$table->text('description');
 			$table->foreignUuid('category')->constrained('categories')->onDelete('cascade');
+			$table->foreignUuid('label')->constrained('labels')->onDelete('cascade');
 			$table->string('priority');
 			$table->string('status')->default('Open');
 			$table->timestamps();
