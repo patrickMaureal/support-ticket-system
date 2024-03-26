@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
+use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -64,15 +65,21 @@ class CategoryController extends Controller
 	 */
 	public function edit(Category $category)
 	{
-		//
+		return view('admin.category.edit', compact('category'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, Category $category)
+	public function update(UpdateCategoryRequest $request, Category $category)
 	{
-		//
+		$data = $request->validated();
+
+		$category->name = $data['name'];
+		$category->save();
+
+		toast()->success('Category updated successfully');
+		return redirect()->route('categories.index');
 	}
 
 	/**
