@@ -22,8 +22,8 @@
 										<i class="bi bi-ticket"></i>
 									</div>
 									<div class="ps-3">
-										<span class="text-muted small pt-2 ps-1">Total Tickets</span>
-										<h6>{{ $ticket->count() }}</h6>
+										<span class="text-muted small pt-2 ps-1 fw-bold">Total Tickets</span>
+										<h6 class="fw-bold">{{ $ticket->count() }}</h6>
 									</div>
 								</div>
 							</div>
