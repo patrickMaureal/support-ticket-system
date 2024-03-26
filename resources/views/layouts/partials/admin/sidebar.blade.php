@@ -15,7 +15,14 @@
 				<i class="bi bi-ticket-perforated"></i>
 				<span>Tickets</span>
 			</a>
-		</li><!-- End Error 404 Page Nav -->
+		</li><!-- End Tickets Page Nav -->
+
+		<li class="nav-item">
+			<a class="nav-link {{ request()->routeIs('categories.*') ? '' : 'collapsed' }}" href="{{ route('categories.index') }}">
+				<i class="bi bi-collection"></i>
+				<span>Categories</span>
+			</a>
+		</li><!-- End Category Nav -->
 
 	</ul>
 
