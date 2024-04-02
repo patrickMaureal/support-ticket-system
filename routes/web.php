@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\Admin\CategoryController;
 use App\Http\Controllers\Web\Admin\Dashboard;
 use App\Http\Controllers\Web\Admin\LabelController;
@@ -35,6 +36,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('table', [LabelController::class, 'showTable'])->name('table');
 	});
 	Route::resource('labels', LabelController::class);
+
+	Route::prefix('users')->name('users.')->group(function () {
+		Route::get('table', [UserController::class, 'showTable'])->name('table');
+	});
+	Route::resource('users', UserController::class);
+
 });
 
 require __DIR__ . '/auth.php';

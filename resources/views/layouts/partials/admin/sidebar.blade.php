@@ -18,6 +18,13 @@
 		</li><!-- End Tickets Page Nav -->
 
 		<li class="nav-item">
+			<a class="nav-link {{ request()->routeIs('users.*') ? '' : 'collapsed' }}" href="{{ route('users.index') }}">
+				<i class="bi bi-person"></i>
+				<span>Users Management</span>
+			</a>
+		</li><!-- End Users Management Page Nav -->
+
+		<li class="nav-item">
 			<a class="nav-link {{ request()->routeIs('categories.*') ? '' : 'collapsed' }}" href="{{ route('categories.index') }}">
 				<i class="bi bi-collection"></i>
 				<span>Categories</span>
