@@ -4,7 +4,7 @@
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house-door"></i></a></li>
-				<li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Ticket</a></li>
+				<li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Category</a></li>
 				<li class="breadcrumb-item active">Create</li>
 			</ol>
 		</nav>
