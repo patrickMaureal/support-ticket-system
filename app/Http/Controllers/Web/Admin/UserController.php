@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
@@ -23,7 +24,7 @@ class UserController extends Controller
 
 	public function showTable() {
 		if(request()->ajax()) {
-			$users = User::select('id', 'name', 'email')->get();
+			$users = User::where('id','!=',Auth::id())->select('id', 'name', 'email')->get();
 
 			return DataTables::of($users)
 			->addColumn('action','admin.user.table-buttons')
