@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
+use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -67,15 +68,22 @@ class UserController extends Controller
 	 */
 	public function edit(User $user)
 	{
-		//
+		return view('admin.user.edit', compact('user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, User $user)
+	public function update(UpdateUserRequest $request, User $user)
 	{
-		//
+		$data = $request->validated();
+
+		$user->name = $data['name'];
+		$user->email = $data['email'];
+		$user->save();
+
+		toast('User updated successfully', 'success');
+		return redirect()->route('users.index');
 	}
 
 	/**

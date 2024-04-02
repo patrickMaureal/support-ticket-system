@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests\Admin\User;
 
-use App\Models\User\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class 	UpdateUserRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -28,7 +27,7 @@ class StoreUserRequest extends FormRequest
 			'email' => [
 				'required',
 				'email:rfc,dns,spoof,filter',
-				Rule::unique('users', 'email')->whereNull('deleted_at'),
+				Rule::unique('users', 'email')->ignore($this->user)->whereNull('deleted_at'),
 			],
 		];
 	}
