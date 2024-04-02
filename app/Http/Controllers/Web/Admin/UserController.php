@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
-use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
+
+use App\Models\Role\Role;
+use App\Models\User\User;
+
 
 class UserController extends Controller
 {
@@ -24,11 +27,21 @@ class UserController extends Controller
 
 	public function showTable() {
 		if(request()->ajax()) {
-			$users = User::where('id','!=',Auth::id())->select('id', 'name', 'email')->get();
+
+			//query include the roles
+			$users = User::where('id','!=',Auth::id())->with('roles')->select('id','name','email')->get();
 
 			return DataTables::of($users)
+			->addColumn('role', function ($user) {
+				return $user->roles->pluck('name')->implode(', ');
+			})
+			//edit Column of role to have bg color
+			->editColumn('role', function ($user) {
+				$bgColor = ($user->roles->pluck('name')->implode(', ') == 'Administrator') ? 'bg-success' : (($user->roles->pluck('name')->implode(', ') == 'Agent')?'bg-primary':'bg-secondary');
+				return '<span class="badge rounded-pill '.$bgColor.'">'.$user->roles->pluck('name')->implode(', ').'</span>';
+			})
 			->addColumn('action','admin.user.table-buttons')
-			->rawColumns(['action'])
+			->rawColumns(['action','role'])
 			->toJson();
 		}
 	}
@@ -37,7 +50,9 @@ class UserController extends Controller
 	 */
 	public function create()
 	{
-		return view('admin.user.create');
+		$roles = Role::where('guard_name', 'web')->whereNotIn('name', ['User'])->pluck('name')->toArray();
+
+		return view('admin.user.create',compact('roles'));
 	}
 
 	/**
@@ -52,6 +67,8 @@ class UserController extends Controller
 		$user->email = $data['email'];
 		$user->password = Hash::make('12345678');
 		$user->save();
+
+		$user->assignRole($data['role']);
 
 		toast('User created successfully', 'success');
 		return redirect()->route('users.index');

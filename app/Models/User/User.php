@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\Role\Role;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,4 +47,5 @@ class User extends Authenticatable
 			'password' => 'hashed',
 		];
 	}
+
 }

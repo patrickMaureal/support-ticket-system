@@ -30,6 +30,10 @@ class StoreUserRequest extends FormRequest
 				'email:rfc,dns,spoof,filter',
 				Rule::unique('users', 'email')->whereNull('deleted_at'),
 			],
+			'role' => [
+				'required',
+				Rule::exists('roles', 'name')
+			],
 		];
 	}
 }

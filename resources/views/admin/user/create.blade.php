@@ -36,7 +36,21 @@
                 	<x-input-error message="{{ $message }}" />
                 @enderror
 							</div>
-
+							<div class="col-md-12">
+								<label for="role">Role
+									<x-asterisk />
+							</label>
+								<select class="form-select @error('role') is-invalid @enderror"
+										id="role" name="role" type="text" aria-label="Select role"
+										title="Choose Role" required>
+										@foreach ($roles as $role)
+											<option value="{{ $role }}" {{ old('role') == $role ? 'selected' : '' }}>{{ $role }}</option>
+										@endforeach
+								</select>
+								@error('role')
+										<x-input-error message="{{ $message }}" />
+								@enderror
+							</div>
 							<div class="text-start">
 								<a href="{{ route('users.index') }}" class="btn btn-secondary">Back</a>
 								<button type="submit" class="btn btn-primary">Submit</button>

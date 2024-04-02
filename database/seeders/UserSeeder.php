@@ -15,11 +15,13 @@ class UserSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		User::create([
+		$user = User::create([
 			'name' => 'Test User',
 			'email' => 'test@test.com',
 			'password' => Hash::make('12345678'),
 			'email_verified_at'			=> Carbon::now(),
 		]);
+
+		$user->assignRole('Administrator');
 	}
 }
