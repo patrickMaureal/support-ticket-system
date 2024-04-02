@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Models\User\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
@@ -89,8 +90,14 @@ class UserController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(User $user)
+	public function destroy(User $user,Request $request)
 	{
-		//
+		if($request->ajax()) {
+			$user->delete();
+			return response()->json([
+				'success' => true,
+				'message' => 'User deleted successfully',
+			],Response::HTTP_OK);
+		}
 	}
 }
