@@ -2,13 +2,14 @@
 <aside id="sidebar" class="sidebar">
 
 	<ul class="sidebar-nav" id="sidebar-nav">
-
+		@role('Administrator|Agent')
 		<li class="nav-item">
 			<a class="nav-link {{ request()->routeIs('dashboard') ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
 				<i class="bi bi-grid"></i>
 				<span>Dashboard</span>
 			</a>
 		</li><!-- End Dashboard Nav -->
+		@endrole
 
 		<li class="nav-item">
 			<a class="nav-link {{ request()->routeIs('tickets.*') ? '' : 'collapsed' }}" href="{{ route('tickets.index') }}">
@@ -16,7 +17,7 @@
 				<span>Tickets</span>
 			</a>
 		</li><!-- End Tickets Page Nav -->
-
+	@role('Administrator')
 		<li class="nav-item">
 			<a class="nav-link {{ request()->routeIs('users.*') ? '' : 'collapsed' }}" href="{{ route('users.index') }}">
 				<i class="bi bi-person"></i>
@@ -37,6 +38,7 @@
 				<span>Labels</span>
 			</a>
 		</li><!-- End Label Nav -->
+	@endrole
 
 	</ul>
 
