@@ -98,8 +98,13 @@ class TicketController extends Controller
 	{
 		$data = $request->validated();
 
+		//assign ticket to agent
+
+		$ticket->agent = $data['agent'];
 		$ticket->title = $data['title'];
 		$ticket->description = $data['description'];
+		$ticket->category = $data['category'];
+		$ticket->label = $data['label'];
 		$ticket->priority = $data['priority'];
 		$ticket->status = $data['status'];
 		$ticket->save();

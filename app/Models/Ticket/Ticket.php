@@ -14,6 +14,7 @@ class Ticket extends Model
 	use HasFactory,HasUuids,SoftDeletes;
 
 	protected $fillable = [
+		'agent',
 		'title',
 		'description',
 		'category',
