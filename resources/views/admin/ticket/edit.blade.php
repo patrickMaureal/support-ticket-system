@@ -23,6 +23,17 @@
 							@method('PUT')
 
 							<div class="col-md-12">
+								<div class="form-floating">
+									<select class="form-select" id="agent" aria-label="agent" name="agent">
+										@foreach ( $agents as $agent )
+											<option value="{{ $agent->id }}" {{ $ticket->agent_id == $agent->id ? 'selected' : '' }}>{{ $agent->name }}</option>
+										@endforeach
+									</select>
+									<label for="floatingSelect">Assign Agent</label>
+								</div>
+							</div>
+
+							<div class="col-md-12">
 								<label for="title" class="form-label">Title</label>
 								<input type="text" class="form-control" id="title" name="title" value="{{ $ticket->title }}">
 							</div>
@@ -30,6 +41,33 @@
 								<label for="description" class="form-label">Description</label>
 								<textarea class="form-control" placeholder="Description" id="description" style="height: 100px;" name="description" id="description">{{ $ticket->description }}</textarea>
 							</div>
+
+							<fieldset class="row mb-3 mt-3">
+								<legend class="col-form-label col-sm-2 pt-0">Category</legend>
+								<div class="col-sm-10">
+									@foreach ( $categories as $category )
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="category" id="{{ $category->name }}" value="{{ $category->id }}" {{ $ticket->category == $category->id ? 'checked' : ''  }}>
+											<label class="form-check-label" for="{{ $category->name }}">
+												{{ $category->name }}
+											</label>
+										</div>
+									@endforeach
+								</div>
+							</fieldset>
+							<fieldset class="row mb-3 mt-3">
+								<legend class="col-form-label col-sm-2 pt-0">Label</legend>
+								<div class="col-sm-10">
+									@foreach ( $labels as $label )
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="label" id="{{ $label->name }}" value="{{ $label->id }}" {{ $ticket->label == $label->id ? 'checked' : '' }}>
+											<label class="form-check-label" for="{{ $label->name }}">
+												{{ $label->name }}
+											</label>
+										</div>
+									@endforeach
+								</div>
+							</fieldset>
 
 							<div class="col-md-12">
 								<div class="form-floating mb-3">

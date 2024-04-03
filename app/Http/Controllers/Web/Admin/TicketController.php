@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Models\Ticket\Ticket;
-
+use App\Models\User\User;
 
 class TicketController extends Controller
 {
@@ -84,7 +84,11 @@ class TicketController extends Controller
 	 */
 	public function edit(Ticket $ticket): View
 	{
-		return view('admin.ticket.edit',compact('ticket'));
+		$categories = Category::all();
+		$labels = Label::all();
+		//get the all users that have "Agent" role i am using spatie role
+		$agents = User::role('Agent')->get();
+		return view('admin.ticket.edit',compact('ticket','categories','labels','agents'));
 	}
 
 	/**
