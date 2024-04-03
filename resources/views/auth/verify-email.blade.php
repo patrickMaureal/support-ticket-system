@@ -1,31 +1,56 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+	<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </div>
-    @endif
+					<div class="d-flex justify-content-center py-4">
+						<a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
+							<img src="{{ asset('img/logo.png') }}" alt="">
+							<span class="d-none d-lg-block">NiceAdmin</span>
+						</a>
+					</div><!-- End Logo -->
 
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
+					<div class="card mb-3">
 
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
-        </form>
+						<div class="card-body">
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
+							<div class="mb-4 mt-2 ">
+								<p>
+									Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+								</p>
+							</div>
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
-        </form>
-    </div>
+							@if (session('status') === 'verification-link-sent')
+								<x-auth-session-status class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert" :status="'A new verification link has been sent to the email address you provided during registration.'" />
+							@endif
+							{{-- Session Status --}}
+
+							<form method="POST" action="{{ route('verification.send') }}">
+							@csrf
+								<div class="d-grid mb-1">
+									<button type="submit" class="btn btn-primary">Resend Verification Email</button>
+								</div>
+							</form>
+
+							<form method="POST" action="{{ route('logout') }}">
+								@csrf
+
+								<div class="d-grid mb-3">
+									<button type="submit" class="btn btn-secondary">Log Out</button>
+								</div>
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
 </x-guest-layout>
+
+
+

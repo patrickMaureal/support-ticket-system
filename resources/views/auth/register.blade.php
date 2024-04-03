@@ -9,7 +9,7 @@
 						<div class="d-flex justify-content-center py-4">
 							<a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
 								<img src="{{ asset('img/logo.png') }}" alt="">
-								<span class="d-none d-lg-block">NiceAdmin</span>
+								<span class="d-none d-lg-block">STS</span>
 							</a>
 						</div><!-- End Logo -->
 
@@ -26,13 +26,13 @@
 									@csrf
 
 									<div class="col-12">
-										<label for="yourName" class="form-label">Your Name</label>
+										<label for="yourName" class="form-label">Name</label>
 										<input type="text" name="name" class="form-control" id="name" required>
 										<div class="invalid-feedback">Please, enter your name!</div>
 									</div>
 
 									<div class="col-12">
-										<label for="yourEmail" class="form-label">Your Email</label>
+										<label for="yourEmail" class="form-label">Email</label>
 										<input type="email" name="email" class="form-control" id="email" required>
 										<div class="invalid-feedback">Please enter a valid Email adddress!</div>
 									</div>
@@ -44,12 +44,18 @@
 									</div>
 
 									<div class="col-12">
+										<label for="yourPassword" class="form-label">Confirm Password</label>
+										<input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+										<div class="invalid-feedback">Please enter your password!</div>
+									</div>
+
+									{{-- <div class="col-12">
 										<div class="form-check">
 											<input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
 											<label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
 											<div class="invalid-feedback">You must agree before submitting.</div>
 										</div>
-									</div>
+									</div> --}}
 
 									<div class="col-12">
 										<button class="btn btn-primary w-100" type="submit">Create Account</button>
