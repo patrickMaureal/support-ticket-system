@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use App\Models\Role\Role;
+use App\Models\Ticket\Ticket;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,4 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
 		];
 	}
 
+	public function tickets()
+	{
+		return $this->hasMany(Ticket::class);
+	}
 }

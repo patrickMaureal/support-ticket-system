@@ -28,7 +28,10 @@ class TicketController extends Controller
 
 	public function showTable(){
 		if (request()->ajax()) {
-			$tickets = Ticket::select('id','title','priority','status')->get();
+			//display also the agent that is assigned to the ticket
+			$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
+                ->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+                ->get();
 
 			return DataTables::of($tickets)
 			->editColumn('status', function ($tickets) {

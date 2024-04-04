@@ -4,6 +4,7 @@ namespace App\Models\Ticket;
 
 use App\Models\Category\Category;
 use App\Models\Label\Label;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,5 +30,9 @@ class Ticket extends Model
 
 	public function labels() {
 		return $this->belongsToMany(Label::class);
+	}
+
+	public function userAgent() {
+		return $this->belongsTo(User::class);
 	}
 }

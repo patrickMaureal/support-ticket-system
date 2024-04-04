@@ -27,6 +27,7 @@ $(function () {
 		},
 		columns: [
 			{ data: "title", name: "title" },
+			{ data: "agent_name", name: "agent_name"},
 			{ data: "priority", name: "priority" },
 			{ data: "status", name: "status" },
 			{
