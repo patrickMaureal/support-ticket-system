@@ -89,6 +89,12 @@
 									<label for="floatingSelect">Status</label>
 								</div>
 							</div>
+							<div class="col-md-12">
+								<div class="form-floating mb-3">
+									<textarea class="form-control" placeholder="Leave a comment here" id="comments" style="height: 100px;" name="comments"></textarea>
+									<label for="floatingTextarea">Comments</label>
+								</div>
+							</div>
 							<div class="text-start">
 								<a href="{{ route('tickets.index') }}" class="btn btn-secondary">Back</a>
 								<button type="submit" class="btn btn-primary">Submit</button>

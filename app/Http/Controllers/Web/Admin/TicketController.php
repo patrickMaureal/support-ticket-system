@@ -123,6 +123,7 @@ class TicketController extends Controller
 		$ticket->label = $data['label'];
 		$ticket->priority = $data['priority'];
 		$ticket->status = $data['status'];
+		$ticket->comments = $data['comments'];
 		$ticket->save();
 
 		toast('Ticket updated successfully', 'success');

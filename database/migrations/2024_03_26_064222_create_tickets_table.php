@@ -20,6 +20,7 @@ return new class extends Migration
 			$table->foreignUuid('label')->constrained('labels')->onDelete('cascade');
 			$table->string('priority');
 			$table->string('status')->default('Open');
+			$table->string('comments')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
