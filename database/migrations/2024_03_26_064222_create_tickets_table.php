@@ -13,7 +13,6 @@ return new class extends Migration
 	{
 		Schema::create('tickets', function (Blueprint $table) {
 			$table->uuid('id')->primary();
-			//user_id should be nullable
 			$table->foreignUuid('agent')->nullable()->constrained('users')->onDelete('cascade');
 			$table->string('title');
 			$table->text('description');

@@ -20,7 +20,15 @@
 						<!-- Multi Columns Form -->
 						<form class="row g-3" method="POST" action="{{ route('tickets.store') }}">
 							@csrf
-
+							<div class="col-md-12">
+								<label for="agent" class="form-label">Assign To<x-asterisk/></label>
+								<select class="form-select" id="agent" aria-label="agent" name="agent" required>
+									<option selected value="" disabled>Select Agent</option>
+									@foreach ( $agents as $agent )
+										<option value="{{ $agent->id }}">{{ $agent->name }}</option>
+									@endforeach
+								</select>
+							</div>
 							<div class="col-md-12">
 								<label for="title" class="form-label">Title<x-asterisk/></label>
 								<input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>

@@ -48,7 +48,8 @@ class TicketController extends Controller
 	{
 		$categories = Category::all();
 		$labels = Label::all();
-		return view('admin.ticket.create',compact('categories','labels'));
+		$agents = User::role('Agent')->get();
+		return view('admin.ticket.create',compact('categories','labels','agents'));
 	}
 
 	/**
@@ -59,6 +60,7 @@ class TicketController extends Controller
 		$data = $request->validated();
 
 		$tickets = new Ticket();
+		$tickets->agent = $data['agent'];
 		$tickets->title = $data['title'];
 		$tickets->description = $data['description'];
 		$tickets->category = $data['category'];
