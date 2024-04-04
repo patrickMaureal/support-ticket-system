@@ -22,7 +22,8 @@ class Ticket extends Model
 		'label',
 		'priority',
 		'status',
-		'comments'
+		'comments',
+		'created_by'
 	];
 
 	public function categories() {

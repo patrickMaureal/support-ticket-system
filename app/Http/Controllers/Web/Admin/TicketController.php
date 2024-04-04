@@ -80,6 +80,7 @@ class TicketController extends Controller
 		$tickets->category = $data['category'];
 		$tickets->label = $data['label'];
 		$tickets->priority = $data['priority'];
+		$tickets->created_by = auth()->user()->id;
 		$tickets->save();
 
 		toast('Ticket created successfully', 'success');
