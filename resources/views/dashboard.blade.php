@@ -36,7 +36,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-ticket"></i>
+										<i class="bi bi-unlock"></i>
 									</div>
 									<div class="ps-3">
 										<h6 class="fw-bold">{{ $openticket }}</h6>
@@ -53,7 +53,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-ticket"></i>
+										<i class="bi bi-lock"></i>
 									</div>
 									<div class="ps-3">
 										<h6 class="fw-bold">{{ $closedticket }}</h6>
