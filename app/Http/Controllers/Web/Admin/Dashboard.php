@@ -20,7 +20,7 @@ class Dashboard extends Controller
 		// If admin, count all tickets
 		$ticketcount = Ticket::count();
 		$openticket = Ticket::where('status', 'Open')->count();
-		$closedticket = Ticket::where('status', 'Closed')->count();
+		$closedticket = Ticket::where('status', 'Close')->count();
 		} else {
 			// If not admin, count tickets created by the user or assigned to them
 			$ticketcount = Ticket::where(function ($query) {
@@ -28,7 +28,7 @@ class Dashboard extends Controller
 							->orWhere('agent', auth()->id()); // Tickets assigned to the authenticated user
 			})->count();
 			$openticket = Ticket::where('status', 'Open')->where('agent', auth()->id())->count();
-			$closedticket = Ticket::where('status', 'Closed')->where('agent', auth()->id())->count();
+			$closedticket = Ticket::where('status', 'Close')->where('agent', auth()->id())->count();
 		}
 
 
