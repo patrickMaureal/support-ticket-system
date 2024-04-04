@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\StoreTicketRequest;
 use App\Http\Requests\Admin\Ticket\UpdateTicketRequest;
-use App\Models\Category\Category;
-use App\Models\Label\Label;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
@@ -15,6 +14,8 @@ use Illuminate\Http\Response;
 
 use App\Models\Ticket\Ticket;
 use App\Models\User\User;
+use App\Models\Category\Category;
+use App\Models\Label\Label;
 
 class TicketController extends Controller
 {
@@ -28,10 +29,20 @@ class TicketController extends Controller
 
 	public function showTable(){
 		if (request()->ajax()) {
-			//display also the agent that is assigned to the ticket
-			$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
-                ->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
-                ->get();
+			$user = auth()->user();
+
+			if ($user->hasRole('Agent')) {
+				$tickets = Ticket::where('agent', $user->id)
+				->join('users as agent', 'agent.id', '=', 'tickets.agent')
+				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->get();
+			} else if ($user->hasRole('Administrator')) {
+				//display also the agent that is assigned to the ticket
+				$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
+				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->get();
+			}
+
 
 			return DataTables::of($tickets)
 			->editColumn('status', function ($tickets) {
