@@ -70,7 +70,7 @@
 								<span class="text-uppercase badge rounded-pill {{ $badgeColor }} text-white">{{ $activityLog->event }}</span>
 							</td>
 							<td valign="middle">
-								<span class="fw-normal">{{ $activityLog->created_at->format('F d, Y H:i:s') }}</span>
+								<span class="fw-normal">{{ $activityLog->created_at->format('F d, Y g:i:s a') }}</span>
 							</td>
 							<td valign="middle">
 								{{-- <x-three-dots-dropdown>
