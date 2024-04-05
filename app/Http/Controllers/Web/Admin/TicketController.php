@@ -36,8 +36,12 @@ class TicketController extends Controller
 				->join('users as agent', 'agent.id', '=', 'tickets.agent')
 				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
-			} else if ($user->hasRole('Administrator')) {
-				//display also the agent that is assigned to the ticket
+			} else if ($user->hasRole('User')) {
+				$tickets = Ticket::where('created_by', $user->id)
+				->join('users as agent', 'agent.id', '=', 'tickets.agent')
+				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->get();
+			} else {
 				$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
 				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
