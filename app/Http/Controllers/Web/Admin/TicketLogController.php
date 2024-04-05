@@ -21,11 +21,4 @@ class TicketLogController extends Controller
 			->paginate(5)->withQueryString();
 		return view('admin.ticket.logs.index',compact('activityLogs','searchVal'));
 	}
-
-	public function show(Activity $activity): View
-	{
-		$activity->load('causer', 'subject');
-
-		return view('admin.ticket.logs.show', compact('activity'));
-	}
 }

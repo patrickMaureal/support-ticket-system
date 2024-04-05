@@ -49,7 +49,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 		Route::prefix('ticket-logs')->name('ticket-logs.')->group( function() {
 			Route::get('/', [TicketLogController::class, 'index'])->name('index');
-			Route::get('/{ticket}', [TicketLogController::class, 'show'])->name('show');
 		});
 	});
 });

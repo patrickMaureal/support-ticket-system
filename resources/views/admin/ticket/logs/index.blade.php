@@ -34,7 +34,6 @@
 						<th>Description</th>
 						<th>Event</th>
 						<th>Dated Added</th>
-						<th class="rounded-end" width="10%">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -76,7 +75,7 @@
 								{{-- <x-three-dots-dropdown>
 									<a class="dropdown-item rounded-top rounded-bottom" href="{{ route('activity-logs.show', $activityLog->id) }}"><span class="bi bi-eye-fill text-success me-2"></span>View</a>
 								</x-three-dots-dropdown> --}}
-								<a class="btn btn-success btn-sm" href="{{ route('ticket-logs.show', $activityLog->id) }}"><i class="bi bi-eye-fill"></i>View</a>
+								{{-- <a class="btn btn-success btn-sm" href="{{ route('ticket-logs.show', $activityLog->id) }}"><i class="bi bi-eye-fill"></i>View</a> --}}
 
 							</td>
 						</tr>
