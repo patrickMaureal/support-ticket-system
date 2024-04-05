@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\Admin\CategoryController;
 use App\Http\Controllers\Web\Admin\Dashboard;
 use App\Http\Controllers\Web\Admin\LabelController;
 use App\Http\Controllers\Web\Admin\TicketController;
+use App\Http\Controllers\Web\Admin\TicketLogController;
 use App\Http\Controllers\Web\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 			Route::get('table', [UserController::class, 'showTable'])->name('table');
 		});
 		Route::resource('users', UserController::class);
+
+		Route::prefix('ticket-logs')->name('ticket-logs.')->group( function() {
+			Route::get('/', [TicketLogController::class, 'index'])->name('index');
+			Route::get('/{ticket}', [TicketLogController::class, 'show'])->name('show');
+		});
 	});
 });
 

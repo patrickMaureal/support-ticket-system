@@ -26,6 +26,13 @@
 		</li><!-- End Users Management Page Nav -->
 
 		<li class="nav-item">
+			<a class="nav-link {{ request()->routeIs('ticket-logs.*') ? '' : 'collapsed' }}" href="{{ route('ticket-logs.index') }}">
+				<i class="bi bi-newspaper"></i>
+				<span>Ticket Logs</span>
+			</a>
+		</li><!-- End Category Nav -->
+
+		<li class="nav-item">
 			<a class="nav-link {{ request()->routeIs('categories.*') ? '' : 'collapsed' }}" href="{{ route('categories.index') }}">
 				<i class="bi bi-collection"></i>
 				<span>Categories</span>
