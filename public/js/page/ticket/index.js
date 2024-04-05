@@ -27,6 +27,7 @@ $(function () {
 		},
 		columns: [
 			{ data: "title", name: "title" },
+			{ data: "created_by", name: "created_by" },
 			{ data: "agent_name", name: "agent_name"},
 			{ data: "priority", name: "priority" },
 			{ data: "status", name: "status" },

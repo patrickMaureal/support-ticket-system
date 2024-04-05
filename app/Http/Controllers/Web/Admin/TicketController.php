@@ -34,16 +34,19 @@ class TicketController extends Controller
 			if ($user->hasRole('Agent')) {
 				$tickets = Ticket::where('created_by', $user->id)
 				->join('users as agent', 'agent.id', '=', 'tickets.agent')
-				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->join('users as user', 'user.id', '=', 'tickets.created_by')
+				->select('tickets.id', 'tickets.title','user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
 			} else if ($user->hasRole('User')) {
 				$tickets = Ticket::where('created_by', $user->id)
 				->join('users as agent', 'agent.id', '=', 'tickets.agent')
-				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->join('users as user', 'user.id', '=', 'tickets.created_by')
+				->select('tickets.id', 'tickets.title','user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
 			} else {
 				$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
-				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->join('users as user', 'user.id', '=', 'tickets.created_by')
+				->select('tickets.id', 'tickets.title','user.name as created_by','agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
 			}
 
@@ -52,6 +55,9 @@ class TicketController extends Controller
 			->editColumn('status', function ($tickets) {
 				$bgColor = ($tickets->status == 'Open') ? 'bg-success' : 'bg-secondary';
 				return '<span class="badge rounded-pill '.$bgColor.'">'.$tickets->status.'</span>';
+			})
+			->editColumn('created_by', function ($tickets) {
+				return $tickets->created_by;
 			})
 			->addColumn('action', 'admin.ticket.table-buttons')
 			->rawColumns(['action','status'])

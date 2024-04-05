@@ -36,6 +36,7 @@
 						<thead>
 							<tr>
 								<th>Title</th>
+								<th>Created By</th>
 								<th>Assigned To</th>
 								<th>Priority</th>
 								<th>Status</th>
