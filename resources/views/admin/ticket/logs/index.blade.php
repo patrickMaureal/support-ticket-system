@@ -59,7 +59,7 @@
 											$badgeColor = 'bg-info';
 											break;
 										case 'deleted':
-											$badgeColor = 'bg-warning';
+											$badgeColor = 'bg-danger';
 											break;
 										case 'created':
 										default:
@@ -91,7 +91,7 @@
 		<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
 
 			{{-- pagination --}}
-			{{-- {{ $activityLogs->links('vendor.pagination.bootstrap-5') }} --}}
+			{{ $activityLogs->links('vendor.pagination.bootstrap-5') }}
 
 		</div>
 	</div>

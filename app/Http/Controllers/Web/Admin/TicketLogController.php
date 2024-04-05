@@ -18,8 +18,7 @@ class TicketLogController extends Controller
 			->join('users', 'users.id', '=', 'activity_log.causer_id')
 			->whereAny(['log_name', 'description', 'event'], 'LIKE', "%{$searchVal}%")
 			->orderBy('activity_log.created_at', 'desc')
-			->get();
-
+			->paginate(5)->withQueryString();
 		return view('admin.ticket.logs.index',compact('activityLogs','searchVal'));
 	}
 
