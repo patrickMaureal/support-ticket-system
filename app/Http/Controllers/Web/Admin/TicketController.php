@@ -32,7 +32,7 @@ class TicketController extends Controller
 			$user = auth()->user();
 
 			if ($user->hasRole('Agent')) {
-				$tickets = Ticket::where('agent', $user->id)
+				$tickets = Ticket::where('created_by', $user->id)
 				->join('users as agent', 'agent.id', '=', 'tickets.agent')
 				->select('tickets.id', 'tickets.title', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
