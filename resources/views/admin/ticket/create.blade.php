@@ -18,8 +18,9 @@
 						<h5 class="card-title">Add Ticket</h5>
 
 						<!-- Multi Columns Form -->
-						<form class="row g-3" method="POST" action="{{ route('tickets.store') }}">
+						<form class="row g-3" method="POST" action="{{ (auth()->user()->hasRole('Agent|Administrator')) ? route('tickets.store') : route('tickets.user.store') }}">
 							@csrf
+							@role('Administrator|Agent')
 							<div class="col-md-12">
 								<label for="agent" class="form-label">Assign To<x-asterisk/></label>
 								<select class="form-select" id="agent" aria-label="agent" name="agent" required>
@@ -29,6 +30,7 @@
 									@endforeach
 								</select>
 							</div>
+							@endrole
 							<div class="col-md-12">
 								<label for="title" class="form-label">Title<x-asterisk/></label>
 								<input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>

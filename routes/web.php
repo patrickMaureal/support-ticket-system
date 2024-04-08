@@ -27,6 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::prefix('tickets')->name('tickets.')->group(function () {
 		Route::get('table', [TicketController::class, 'showTable'])->name('table');
+		//user store ticket
+		Route::post('/user/tickets', [TicketController::class, 'userStoreTicket'])->name('user.store');
 	});
 	Route::resource('tickets', TicketController::class);
 

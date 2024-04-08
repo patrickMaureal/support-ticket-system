@@ -38,10 +38,9 @@ class TicketController extends Controller
 				->select('tickets.id', 'tickets.title','user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
 			} else if ($user->hasRole('User')) {
-				$tickets = Ticket::where('created_by', $user->id)
-				->join('users as agent', 'agent.id', '=', 'tickets.agent')
+				$tickets = Ticket::leftJoin('users as agent', 'agent.id', '=', 'tickets.agent')
 				->join('users as user', 'user.id', '=', 'tickets.created_by')
-				->select('tickets.id', 'tickets.title','user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+				->select('tickets.id', 'tickets.title', 'user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
 				->get();
 			} else {
 				$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
@@ -56,8 +55,8 @@ class TicketController extends Controller
 				$bgColor = ($tickets->status == 'Open') ? 'bg-success' : 'bg-secondary';
 				return '<span class="badge rounded-pill '.$bgColor.'">'.$tickets->status.'</span>';
 			})
-			->editColumn('created_by', function ($tickets) {
-				return $tickets->created_by;
+			->editColumn('agent_name', function ($ticket) {
+				return $ticket->agent_name ?? 'No Agent Assigned';
 			})
 			->addColumn('action', 'admin.ticket.table-buttons')
 			->rawColumns(['action','status'])
@@ -155,5 +154,30 @@ class TicketController extends Controller
 				'message' => 'Ticket has been successfully deleted.',
 			],Response::HTTP_OK);
 		}
+	}
+
+	public function userStoreTicket(Request $request)
+	{
+		$data = $request->validate([
+			'title' => 'required',
+			'description' => 'required',
+			'category' => 'required',
+			'label' => 'required',
+			'priority' => 'required',
+		]);
+
+		$tickets = new Ticket();
+		$tickets->title = $data['title'];
+		$tickets->description = $data['description'];
+		$tickets->category = $data['category'];
+		$tickets->label = $data['label'];
+		$tickets->priority = $data['priority'];
+		$tickets->created_by = auth()->user()->id;
+		$tickets->agent = null;
+		$tickets->save();
+
+		toast('Ticket created successfully', 'success');
+
+		return redirect()->route('tickets.index');
 	}
 }
