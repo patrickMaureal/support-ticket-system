@@ -24,7 +24,11 @@
 
 							<div class="col-md-12">
 								<div class="form-floating">
-									<select class="form-select" id="agent" aria-label="agent" name="agent">
+									<select class="form-select" id="agent" aria-label="agent" name="agent" {{ auth()->user()->hasRole('User') ? 'disabled' : '' }}>
+										{{-- if user is has role "User" and the ticket->agent is null --}}
+										@if (auth()->user()->hasRole('User') && is_null($ticket->agent))
+											<option selected value="">No Assigned Agent</option>
+										@endif
 										@foreach ( $agents as $agent )
 											<option value="{{ $agent->id }}" {{ $ticket->agent_id == $agent->id ? 'selected' : '' }}>{{ $agent->name }}</option>
 										@endforeach
