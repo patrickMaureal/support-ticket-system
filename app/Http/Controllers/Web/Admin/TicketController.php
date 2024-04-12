@@ -33,7 +33,8 @@ class TicketController extends Controller
 
 			$tickets = Ticket::leftJoin('users as agent', 'agent.id', '=', 'tickets.agent')
 			->join('users as user', 'user.id', '=', 'tickets.created_by')
-			->select('tickets.id', 'tickets.title', 'user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status');
+			->select('tickets.id', 'tickets.title', 'user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
+			->orderByDesc('tickets.created_at');
 
 			if ($user->hasRole('Agent')) {
 				$tickets->where('tickets.created_by', $user->id);
