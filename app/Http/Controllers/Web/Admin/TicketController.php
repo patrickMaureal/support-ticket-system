@@ -44,7 +44,7 @@ class TicketController extends Controller
 
 			return DataTables::of($tickets)
 			->editColumn('status', function ($tickets) {
-				$bgColor = ($tickets->status == 'Open') ? 'bg-success' : 'bg-secondary';
+				$bgColor = ($tickets->status == 'Open') ? 'bg-success' : 'bg-info';
 				return '<span class="badge rounded-pill '.$bgColor.'">'.$tickets->status.'</span>';
 			})
 			->editColumn('agent_name', function ($ticket) {
