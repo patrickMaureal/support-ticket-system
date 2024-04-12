@@ -31,24 +31,15 @@ class TicketController extends Controller
 		if (request()->ajax()) {
 			$user = auth()->user();
 
-			if ($user->hasRole('Agent')) {
-				$tickets = Ticket::where('created_by', $user->id)
-				->join('users as agent', 'agent.id', '=', 'tickets.agent')
-				->join('users as user', 'user.id', '=', 'tickets.created_by')
-				->select('tickets.id', 'tickets.title','user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
-				->get();
-			} else if ($user->hasRole('User')) {
-				$tickets = Ticket::leftJoin('users as agent', 'agent.id', '=', 'tickets.agent')
-				->join('users as user', 'user.id', '=', 'tickets.created_by')
-				->select('tickets.id', 'tickets.title', 'user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status')
-				->get();
-			} else {
-				$tickets = Ticket::join('users as agent', 'agent.id', '=', 'tickets.agent')
-				->join('users as user', 'user.id', '=', 'tickets.created_by')
-				->select('tickets.id', 'tickets.title','user.name as created_by','agent.name as agent_name', 'tickets.priority', 'tickets.status')
-				->get();
-			}
+			$tickets = Ticket::leftJoin('users as agent', 'agent.id', '=', 'tickets.agent')
+			->join('users as user', 'user.id', '=', 'tickets.created_by')
+			->select('tickets.id', 'tickets.title', 'user.name as created_by', 'agent.name as agent_name', 'tickets.priority', 'tickets.status');
 
+			if ($user->hasRole('Agent')) {
+				$tickets->where('tickets.created_by', $user->id);
+			} elseif ($user->hasRole('User')) {
+				$tickets->where('tickets.created_by', $user->id);
+			}
 
 			return DataTables::of($tickets)
 			->editColumn('status', function ($tickets) {
